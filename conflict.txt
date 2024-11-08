@@ -1,2 +1,4 @@
 orignal text
-changes made from file2 djcbsj
+<<<<<<< HEAD
+changes made from file2 
+
