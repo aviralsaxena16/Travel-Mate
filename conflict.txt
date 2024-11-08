@@ -1,4 +1,3 @@
 orignal text
 <<<<<<< HEAD
-changes made from file2 
-
+changes made from file1
