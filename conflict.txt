@@ -2,4 +2,6 @@ orignal text
 <<<<<<< HEAD
 changes made from file2
 new changes made from file1
+
+Adding Some Chnages
 >>>>>>> origin/master
