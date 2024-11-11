@@ -10,3 +10,17 @@ export const createTour = async (req, res) => {
         res.status(500).json({ success: false, message: "Failed to create, try again" });
     }
 };
+
+export const updateTour = async (req, res) => {
+    const id = req.params.id;
+
+    try {
+        const updatedTour = await Tour.findByIdAndUpdate(id, {
+            $set: req.body,
+        }, { new: true });
+
+        res.status(200).json({ success: true, message: "Successfully Updated", data: updatedTour });
+    } catch (error) {
+        res.status(500).json({ success: false, message: "Failed to update, try again" });
+    }
+};
