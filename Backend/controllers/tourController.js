@@ -96,3 +96,12 @@ export const getFeaturedTour = async (req, res) => {
         res.status(500).json({ success: false, message: "Failed to fetch tours" });
     }
 };
+
+export const getTourCount = async(req,res)=>{
+    try {
+        const TourCount=await Tour.estimatedDocumentCount()
+        res.status(200).json({success:true,data:TourCount})
+    } catch (error) {
+        res.status(500).json({success:false,message:'Failed to fetch'})
+    }
+}
