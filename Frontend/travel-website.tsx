@@ -35,3 +35,18 @@ export default function Component() {
       image: '/placeholder.svg'
     },
   ]
+
+  const services = [
+    {
+      title: 'Calculate Weather',
+      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
+    },
+    {
+      title: 'Best Tour Guide',
+      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
+    },
+    {
+      title: 'Customization',
+      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
+    }
+  ]
