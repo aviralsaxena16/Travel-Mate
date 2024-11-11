@@ -84,3 +84,15 @@ export const getTourBySearch =async(req,res)=>{
         res.status(404).json({success: false,message: "Not found"})
     }
 }
+
+export const getFeaturedTour = async (req, res) => {
+
+    try {
+        const tours = await Tour.find({featured:true})
+        .populate('reviews')
+        .limit(8);
+        res.status(200).json({ success: true,message: "Successful", data: tours });
+    } catch (error) {
+        res.status(500).json({ success: false, message: "Failed to fetch tours" });
+    }
+};
