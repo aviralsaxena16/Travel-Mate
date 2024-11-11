@@ -35,3 +35,33 @@ export const deleteTour = async (req, res) => {
         res.status(500).json({ success: false, message: "Failed to delete, try again" });
     }
 };
+
+export const getSingleTour = async (req, res) => {
+    const id = req.params.id;
+    try {
+        const tour = await Tour.findById(id).populate('reviews');
+
+        if (tour) {
+            res.status(200).json({ success: true, message: "Successful", data: tour });
+        } else {
+            res.status(404).json({ success: false, message: "Tour not found" });
+        }
+    } catch (error) {
+        res.status(500).json({ success: false, message: "Failed to retrieve the tour" });
+    }
+};
+
+export const getAllTour = async (req, res) => {
+
+    const page=parseInt(req.query.page)
+
+    try {
+        const tours = await Tour.find({}).populate('reviews')
+        .skip(page * 8)
+        .limit(8);
+
+        res.status(200).json({ success: true,count:tours.length ,message: "Successful", data: tours });
+    } catch (error) {
+        res.status(500).json({ success: false, message: "Failed to fetch tours" });
+    }
+};
