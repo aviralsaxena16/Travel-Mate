@@ -16,3 +16,22 @@ export default function Component() {
     distance: '',
     people: ''
   })
+
+  const featuredTours = [
+    {
+      id: 1,
+      title: 'Westminster Bridge',
+      location: 'London',
+      rating: 4.5,
+      reviews: 2,
+      image: '/placeholder.svg'
+    },
+    {
+      id: 2,
+      title: 'Bali, Indonesia',
+      location: 'Bali',
+      rating: 5.0,
+      reviews: 1,
+      image: '/placeholder.svg'
+    },
+  ]
