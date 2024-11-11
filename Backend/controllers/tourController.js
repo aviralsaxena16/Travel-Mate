@@ -65,3 +65,22 @@ export const getAllTour = async (req, res) => {
         res.status(500).json({ success: false, message: "Failed to fetch tours" });
     }
 };
+
+export const getTourBySearch =async(req,res)=>{
+
+    const city=new RegExp(req.query.city)
+    const maxGroupSize=parseInt(req.query.maxGroupSize)
+    const distance=parseInt(req.query.distance)
+
+    try {
+        const tour=await Tour.find({
+            city,
+            distance:{$gte : distance},
+            maxGroupSize: {$gte : maxGroupSize},
+        }).populate('reviews');
+
+        res.status(200).json({success: true,message: "Successful", data: tour})
+    } catch (error) {
+        res.status(404).json({success: false,message: "Not found"})
+    }
+}
