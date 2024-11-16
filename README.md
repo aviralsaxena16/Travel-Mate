@@ -5,4 +5,8 @@ In this project we are making a website for travel planning, it will consist of 
 <<<<<<< HEAD
 So we are just using this text file to create conflicts
 =======
+<<<<<<< HEAD
 example hvscvvhsdhj
+=======
+example creating conflict
+>>>>>>> origin/master
