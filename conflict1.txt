@@ -1,5 +1,8 @@
 This is a file created to make conflicts
 
 Adding some random text to cause merge conflict
+<<<<<<< HEAD
+kishor is now editing and trying to push
+=======
 Making some changes
 New changes by divyansh
