@@ -1,5 +1,0 @@
-This is website for Managing Tours and Travels
-
-This file is created to cause merge conflict
-
-This is a change made by divyansh
