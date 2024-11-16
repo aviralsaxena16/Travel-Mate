@@ -2,3 +2,4 @@ This is a file created to make conflicts
 
 Adding some random text to cause merge conflict
 Making some changes
+New changes by divyansh
