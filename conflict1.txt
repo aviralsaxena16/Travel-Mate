@@ -1,5 +1,8 @@
 This is a file created to make conflicts
 
 Adding some random text to cause merge conflict
+<<<<<<< HEAD
 kishor is now editing and trying to push
-66481ad78f44d3bd8278d36fc9f86a86dbd054c0
+=======
+Making some changes
+>>>>>>> 66481ad78f44d3bd8278d36fc9f86a86dbd054c0
