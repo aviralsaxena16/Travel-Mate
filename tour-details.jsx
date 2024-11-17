@@ -1,11 +1,12 @@
-import React.{useRef,useState} from 'react' 6.9k (gzipped; 2.7k)
+import React.{useRef,useState} from 'react' 
 import "tour-details.css"
-import {Container,Row,Col,Form,ListGroup} from 'reactstrap'; 124.4k (gzipped: 33.1k)
-import {useParams} from "react-router-dom"; 1.6k(gzipped: 747)
+import {Container,Row,Col,Form,ListGroup} from 'reactstrap'; 
+import {useParams} from "react-router-dom"; 
 import tourData from '';
 import calculateAvgRating from "";
-import avatar from ""import { useState } from "react"
-:
+import avatar from ""
+import Booking from ""
+
 
 const TourDetails =()=>{
 const id=useParams();
@@ -34,7 +35,7 @@ return (
                             <div className='d-flex align-items-center gap-5'>
                                 <span className='tour__rating d-flex align-items-center gap-1'>
                                     <i class ="ri-star-s-fill" style={color:"var(--secondary-color)"}></i> 
-                                    {CalculateAvgRating==0? null : avgRating}
+                                    {avgRating==0? null : avgRating}
                                     {totalRating==0?(
                                         "Not rated"
                                     ) : (
@@ -111,10 +112,13 @@ return (
                 </Col>
 
                 <Col lg='4'>
-                                        
+                      <Booking tour={tour} avgRating={avgRating}/>                  
                 </Col>
             </Row>
         </Container>
     </section>
-    </>)
+    <Newsletter/>
+    </>
+    );
+
 }
