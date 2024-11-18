@@ -4,7 +4,7 @@ import {Container,Row,Col} from 'reactstrap'; 124.3k (gzipped: 33.1k)
 import "tours.css";
 import SearchBar from '';
 import TourCard from '';
-import NewsLetter from '';
+import NewsLetter from ''; 
 import TourData  from '';
 import { useEffect, useState } from "react"
 const Tours =(){

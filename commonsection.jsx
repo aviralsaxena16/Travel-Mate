@@ -1,14 +1,14 @@
-import React from 'react' 6.9k (gzipped; 2.7k)
+import React from 'react' 
 import './common-section.css'
-import {Container,Row,Col} from 'reactstrap'; 124.3k (gzipped: 33.1k)
+import {Container,Row,Col} from 'reactstrap'; 
 const CommonSection=({title}) {
     return (
         <section className='common-section'>
             <Container>
                 <Row>
-                    <col>
+                    <Col>
                         <h1>{title}</h1>
-                    </col>
+                    </Col>
                 </Row>
             </Container>
         </section>
