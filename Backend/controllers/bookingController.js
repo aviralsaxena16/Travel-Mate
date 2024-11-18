@@ -62,4 +62,3 @@ export const getAllBooking = async (req, res) => {
         });
     }
 };
-

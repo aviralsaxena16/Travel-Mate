@@ -38,6 +38,7 @@ export const deleteTour = async (req, res) => {
 
 export const getSingleTour = async (req, res) => {
     const id = req.params.id;
+    
     try {
         const tour = await Tour.findById(id).populate('reviews');
 
@@ -69,8 +70,10 @@ export const getAllTour = async (req, res) => {
 export const getTourBySearch =async(req,res)=>{
 
     const city=new RegExp(req.query.city)
+    // const city=req.query.city
     const maxGroupSize=parseInt(req.query.maxGroupSize)
     const distance=parseInt(req.query.distance)
+    console.log(city)
 
     try {
         const tour=await Tour.find({
@@ -78,6 +81,7 @@ export const getTourBySearch =async(req,res)=>{
             distance:{$gte : distance},
             maxGroupSize: {$gte : maxGroupSize},
         }).populate('reviews');
+        console.log(tour)
 
         res.status(200).json({success: true,message: "Successful", data: tour})
     } catch (error) {
