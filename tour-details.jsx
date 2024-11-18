@@ -1,30 +1,72 @@
-import React.{useRef,useState} from 'react' 
+import React, {useRef,useEffect,useState,useContext} from 'react' 
 import "tour-details.css"
 import {Container,Row,Col,Form,ListGroup} from 'reactstrap'; 
 import {useParams} from "react-router-dom"; 
 import tourData from '';
 import calculateAvgRating from "";
-import avatar from ""
-import Booking from ""
+import avatar from "";
+import Booking from "";
+import Newsletter from "./../shared/Newsletter";
+import {AuthContext} from './../context/AuthContext';
+import {BASE_URL} from './../utils/config';
+import useFetch from "./../hooks/useFetch";
 
 
 const TourDetails =()=>{
 const id=useParams();
 const reviewMsgRef=useRef('')
 const [tourRating,setTourRating]=useState(null)
+const {data:tour} = useFetch(`${BASE_URL}`/tour/${id})
+const {user} = useContext(AuthContext)
 const tour = tourData.find(tour=>tour.id==id)
 const {photo,title,desc,price,address,reviews,city,distance,maxGroupSize}=tour
 const {totalRating, avgRating} = CalculateAvgRating(reviews)
 const options = {day:"numeric",month:'long',year:"numeric"};
 const submitHandler = e=>{
     e.preventDefault()
-    const reviewText = reviewMsgRef.current.value
-}
+    const reviewText = reviewMsgRef.current.value;
+    
+    try {
+        if(!user||user==undefined||user==null){
+            alert('Please sign in')
+        }
+        const reviewObj = {
+            username:user?.username,
+            reviewText
+            rating:tourRating
+        }
+        const res = await fetch(`${BASE_URL}/review/${id}`,{
+            method:'post',
+            headers:{
+                'content-type':'application/json'
+            },
+            credentials:'include',
+            body:JSON.stringify(reviewObj)
+        })
+        const result=await res.json()
+        if(!res.ok) {
+            return alert(result.message);
+        }
+        alert(result.message)
+    } catch (err) {
+        alert(err.message)
+    }
+};
+useEffect(()=> {
+    window.scrollTo(0,0);
+}, [tour]);
 return (
     <>
     <section>
         <Container>
-            <Row>
+            {
+                loading && <h4 className='text-center pt-5'>Loading..........</h4>
+            }
+            {
+                loading && <h4 className='text-center pt-5'>{error}</h4>
+            }
+            {
+                !loading && !error && <Row>
                 <Col>
                     <div className='tour_content'>
                         <img src={photo} alt=""/>
@@ -78,34 +120,31 @@ return (
                                 </div>
                                 <div className='review__input'>
                                     <input type='text' ref={reviewMsgRef} placeholder='share your thoughts' required/>
-                                    <button className='bin primary__btn text-white' type='submit'>
-                                        {
+                                    <button className='bin primary__btn text-white' type='submit'>Submit</button>
+                                </div>
+                            </Form>
+                            <ListGroup classname= "user__reviews"></ListGroup>
                                             reviews?.map(review=>(
                                                 <div className='review__item'>
                                                     <img src={avatar} alt=""/>
                                                     <div className='w-100'>
-                                                        <div className='d-flex align-items-centerjustify-content-between'>
+                                                        <div className='d-flex align-items-center justify-content-between'>
                                                             <div>
-                                                                <h5></h5>
-                                                                <p>{new Date("01-18-2024").toLocaleDateString(
+                                                                <h5>{review.username}</h5>
+                                                                <p>{new Date(review.createdAt).toLocaleDateString(
                                                                     "en-US",
                                                                     options
                                                                 )}</p>
                                                             </div>
                                                             <span className='d-flex align-items-center'>
-                                                                5<i class="ri-star-s-fill"></i>
+                                                                {review.rating}<i class="ri-star-s-fill"></i>
                                                             </span>
                                                         </div>
-                                                        <h6>Amazing Tour</h6>
+                                                        <h6>{review.reviewText}</h6>
                                                     </div>
                                                 </div>
                                             ))
-                                        }
-                                    </button>
-                                </div>
-                            </Form>
-                            <ListGroup classname= "user__reviews">
-                                reviews?
+                                        }                            
                             </ListGroup>
                         </div> 
                     </div>
@@ -115,6 +154,7 @@ return (
                       <Booking tour={tour} avgRating={avgRating}/>                  
                 </Col>
             </Row>
+            }
         </Container>
     </section>
     <Newsletter/>
