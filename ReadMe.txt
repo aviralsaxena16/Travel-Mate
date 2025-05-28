@@ -1,6 +1,6 @@
 Trip Booking Website
 
-git hub repo:https://github.com/aviralsaxena16/CSP_Project.git
+git hub repo:https://github.com/aviralsaxena16/Travel-Mate.git
 
 Welcome to our Trip Booking Website! This platform allows users to easily book, rate, and review trips, while also accessing a variety of trip-related features, such as cost calculation, photo galleries, and newsletters.
 
